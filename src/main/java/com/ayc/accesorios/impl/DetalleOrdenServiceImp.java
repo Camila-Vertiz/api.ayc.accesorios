@@ -1,0 +1,21 @@
+package com.ayc.accesorios.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ayc.accesorios.entity.DetalleOrden;
+import com.ayc.accesorios.repository.IDetalleOrdenRepository;
+import com.ayc.accesorios.service.IDetalleOrdenService;
+
+@Service
+public class DetalleOrdenServiceImp implements IDetalleOrdenService{
+
+    @Autowired
+    private IDetalleOrdenRepository detalleOrdenRepository;
+    
+    @Override
+    public void Guardar(DetalleOrden dt) {
+        detalleOrdenRepository.save(dt);
+    }
+    
+}

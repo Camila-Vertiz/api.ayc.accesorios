@@ -1,0 +1,42 @@
+package com.ayc.accesorios.repository;
+
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.ayc.accesorios.entity.Producto;
+
+@Repository //sirve como repositorio en la BD
+                                   //Metodos para el CRUD
+public interface IProductoRepository extends CrudRepository<Producto, Integer>{ 
+	@Query(value="SELECT * FROM producto "
+	        + "INNER JOIN categoria ON producto.id_categoria = categoria.id_categoria "
+	        + "WHERE LOWER(producto.nombre) LIKE LOWER(CONCAT('%', ?1, '%')) ",nativeQuery=true)
+	List<Producto> buscarPorTodo(String dato);
+	
+	@Query(value="SELECT * FROM producto "
+	        + "INNER JOIN categoria ON producto.id_categoria = categoria.id_categoria "
+	        + "WHERE producto.id_categoria=1 and LOWER(producto.nombre) LIKE LOWER(CONCAT('%', ?1, '%')) ",nativeQuery=true)
+	List<Producto> buscarCelulares(String dato);
+	
+	@Query(value="SELECT * FROM producto "
+	        + "INNER JOIN categoria ON producto.id_categoria = categoria.id_categoria "
+	        + "WHERE producto.id_categoria=4 and LOWER(producto.nombre) LIKE LOWER(CONCAT('%', ?1, '%')) ",nativeQuery=true)
+	List<Producto> buscarCases(String dato);
+
+    @Query(value="SELECT * FROM producto "
+            + "INNER JOIN categoria ON producto.id_categoria = categoria.id_categoria "
+            + "ORDER BY producto.nombre ASC",nativeQuery=true)
+    List<Producto> OrderAsc();
+    
+    @Query(value="SELECT * FROM producto "
+            + "INNER JOIN categoria ON producto.id_categoria = categoria.id_categoria "
+            + "ORDER BY producto.nombre DESC",nativeQuery=true)
+    List<Producto> OrderDesc();
+    
+    @Query(value="SELECT * FROM producto "
+            + "INNER JOIN categoria ON producto.id_categoria = categoria.id_categoria "
+            + "WHERE categoria.nombre LIKE %?1%",nativeQuery=true)
+    List<Producto> ListarPorCategoria(String dato);
+}
