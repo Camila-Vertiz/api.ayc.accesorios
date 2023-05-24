@@ -1,15 +1,67 @@
 package com.ayc.accesorios.entity;
 
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="usuario")
+@NamedStoredProcedureQueries(value = {
+//
+//		@NamedStoredProcedureQuery(name = "f_registrar_usuario", procedureName = "f_registrar_usuario", parameters = {
+//
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_nombres", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_apellidos", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_fechanacimiento", type = Date.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_username", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_password", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_correo", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_celular", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_rol", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_urlfoto", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_tipodocumento", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_numerodocumento", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_direccion", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "numero", type = int.class),
+//		// @StoredProcedureParameter(mode = ParameterMode.OUT, name = "resultado", type
+//		// = String.class)
+//		}),
+
+//		@NamedStoredProcedureQuery(name = "f_actualizar_usuario", procedureName = "f_actualizar_usuario", parameters = {
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_idusuario", type = int.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_nombres", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_apellidos", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_fechanacimiento", type = Date.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_username", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_password", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_correo", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_celular", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_rol", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_urlfoto", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_tipodocumento", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_numerodocumento", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_direccion", type = String.class),
+//				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "numero", type = int.class),
+//		// @StoredProcedureParameter(mode = ParameterMode.OUT, name = "resultado", type
+//		// = String.class)
+//		}),
+
+
+		@NamedStoredProcedureQuery(name = "f_listar_usuario_por_id", procedureName = "f_listar_usuario_por_id", parameters = {
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_id_usuario", type = int.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_resultado", type = String.class),
+		}),
+
+})
 public class Usuario {
     @Id //La linea siguiente es ID
     @GeneratedValue(strategy=GenerationType.IDENTITY) //Autoincremental
