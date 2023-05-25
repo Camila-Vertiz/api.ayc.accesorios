@@ -29,5 +29,8 @@ public interface IUsuarioRepository extends CrudRepository<Usuario, Integer> {
 	
 	@Procedure(name = "f_listar_usuario_por_id")
 	public String f_listar_usuario_por_id(@Param("in_id_usuario") int idusuario);
+	
+	@Procedure(name = "f_verificar_usuario_existente")
+	public String f_verificar_usuario_existente(@Param("in_email") String email);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,10 +41,8 @@ public class AycAccesoriosController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> verificarUsuario(@RequestBody Usuario usuario) throws ParseException {
-		System.out.println("entra con correo:" + usuario.getEmail());
 		String data = usuarioService.verificarUsuario(usuario);
 		return new ResponseEntity<>(data, HttpStatus.OK);
-
 	}
 	
 	@RequestMapping(value="/usuario/listar/{idusuario}",method = RequestMethod.GET)
@@ -52,5 +51,18 @@ public class AycAccesoriosController {
 		String data = usuarioService.ConsultarId(idusuario);
 		return new ResponseEntity<>(data,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/usuario/existe", method = RequestMethod.POST)
+	public ResponseEntity<?> verificarUsuarioExistente(@RequestBody Usuario usuario) throws ParseException {
+		System.out.println("entra con correo:" + usuario.getEmail());
+		String data = usuarioService.verificarUsuarioExistente(usuario);
+		return new ResponseEntity<>(data, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/usuario/insertar", method = RequestMethod.POST)
+	public ResponseEntity<?> insertarUsuario(@RequestBody Usuario usuario) throws ParseException {
+        usuarioService.Guardar(usuario);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
