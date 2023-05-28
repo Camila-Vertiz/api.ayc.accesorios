@@ -40,14 +40,4 @@ public class CategoriaService implements ICategoriaService {
         return data.buscarPorTodo(dato);
     }
 
-    @Override
-    public List<Categoria> OrdenAscendente() {
-        return data.OrderAsc();
-    }
-
-    @Override
-    public List<Categoria> OrdenDescendente() {
-        return data.OrderDesc();
-    }
-
 }

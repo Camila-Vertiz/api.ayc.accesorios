@@ -73,6 +73,14 @@ public class AycAccesoriosController {
 	
 	@RequestMapping(value = "/categoria/insertar", method = RequestMethod.POST)
 	public ResponseEntity<?> insertarCategoria(@RequestBody Categoria categoria) throws ParseException {
+		System.out.print(categoria.getId_categoria()+"  "+categoria.getNombre());
+		categoriaService.Guardar(categoria);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/categoria/actualizar", method = RequestMethod.PUT)
+	public ResponseEntity<?> actualizarCategoria(@RequestBody Categoria categoria) throws ParseException {
+		System.out.print(categoria);
 		categoriaService.Guardar(categoria);
         return new ResponseEntity<>(HttpStatus.OK);
     }

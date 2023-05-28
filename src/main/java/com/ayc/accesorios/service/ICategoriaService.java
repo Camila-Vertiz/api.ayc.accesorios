@@ -12,7 +12,5 @@ public interface ICategoriaService {
     public void Guardar(Categoria p);
     public void Eliminar(int id);
     public List<Categoria> Buscar(String dato);
-    public List<Categoria> OrdenAscendente();
-    public List<Categoria> OrdenDescendente();
     
 }

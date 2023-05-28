@@ -15,11 +15,4 @@ public interface ICategoriaRepository extends CrudRepository<Categoria,Integer> 
             ,nativeQuery=true)
     List<Categoria> buscarPorTodo(String dato);
     
-    @Query(value="SELECT * FROM categoria "
-            + "ORDER BY nombre ASC",nativeQuery=true)
-    List<Categoria> OrderAsc();
-    
-    @Query(value="SELECT * FROM categoria "
-            + "ORDER BY nombre DESC",nativeQuery=true)
-    List<Categoria> OrderDesc();
 }
