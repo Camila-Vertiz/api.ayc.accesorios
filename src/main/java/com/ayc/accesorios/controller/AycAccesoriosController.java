@@ -8,17 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ayc.accesorios.entity.ClienteEntity;
+import com.ayc.accesorios.entity.Categoria;
 import com.ayc.accesorios.entity.Usuario;
-import com.ayc.accesorios.impl.ClienteServiceImpl;
-import com.ayc.accesorios.impl.UsuarioServiceImpl;
-import com.ayc.accesorios.service.IClienteService;
+import com.ayc.accesorios.service.ICategoriaService;
 import com.ayc.accesorios.service.IUsuarioService;
 
 @RestController
@@ -29,6 +26,9 @@ public class AycAccesoriosController {
 
 	@Autowired
 	private IUsuarioService usuarioService;
+	
+	@Autowired
+	private ICategoriaService categoriaService;
 
 	@RequestMapping(value = "/listaClientes", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> getClientes() throws Exception {
@@ -62,6 +62,18 @@ public class AycAccesoriosController {
 	@RequestMapping(value = "/usuario/insertar", method = RequestMethod.POST)
 	public ResponseEntity<?> insertarUsuario(@RequestBody Usuario usuario) throws ParseException {
         usuarioService.Guardar(usuario);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/categoria/listar", method = RequestMethod.GET)
+	public ResponseEntity<List<Categoria>> getCategorias() throws Exception {
+		List<Categoria> listaCategoria = categoriaService.Listar();
+		return ResponseEntity.ok(listaCategoria);
+	}
+	
+	@RequestMapping(value = "/categoria/insertar", method = RequestMethod.POST)
+	public ResponseEntity<?> insertarCategoria(@RequestBody Categoria categoria) throws ParseException {
+		categoriaService.Guardar(categoria);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
