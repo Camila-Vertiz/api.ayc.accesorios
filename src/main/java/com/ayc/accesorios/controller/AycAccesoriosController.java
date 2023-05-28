@@ -84,5 +84,12 @@ public class AycAccesoriosController {
 		categoriaService.Guardar(categoria);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+	
+	@RequestMapping(value = "/categoria/eliminar/{id_categoria}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> eliminarCategoria(@PathVariable("id_categoria") int id_categoria) throws ParseException {
+		System.out.print(id_categoria);
+		categoriaService.Eliminar(id_categoria);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
