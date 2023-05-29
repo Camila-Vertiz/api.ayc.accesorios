@@ -33,13 +33,14 @@ public class Carrito {
     private int cantidad;
     private double precio;
     private double total;
+    private int estado;
     
     public Carrito() {
 		super();
 	}
 
 	public Carrito(int id_carrito, int id_producto, int id_usuario, String nombre, int cantidad, double precio,
-			double total) {
+			double total, int estado) {
 		super();
 		this.id_carrito = id_carrito;
 		this.id_producto = id_producto;
@@ -48,9 +49,10 @@ public class Carrito {
 		this.cantidad = cantidad;
 		this.precio = precio;
 		this.total = total;
+		this.estado=estado;
 	}
 
-	public Carrito(int id_producto, int id_usuario, String nombre, int cantidad, double precio, double total) {
+	public Carrito(int id_producto, int id_usuario, String nombre, int cantidad, double precio, double total, int estado) {
 		super();
 		this.id_producto = id_producto;
 		this.id_usuario = id_usuario;
@@ -58,6 +60,7 @@ public class Carrito {
 		this.cantidad = cantidad;
 		this.precio = precio;
 		this.total = total;
+		this.estado=estado;
 	}
 
 	public int getId_carrito() {
@@ -114,6 +117,14 @@ public class Carrito {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 
 }
