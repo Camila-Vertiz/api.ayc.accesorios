@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ayc.accesorios.entity.Categoria;
+import com.ayc.accesorios.entity.Producto;
 import com.ayc.accesorios.entity.Usuario;
 import com.ayc.accesorios.service.ICategoriaService;
+import com.ayc.accesorios.service.IProductoService;
 import com.ayc.accesorios.service.IUsuarioService;
 
 @RestController
@@ -29,6 +31,9 @@ public class AycAccesoriosController {
 	
 	@Autowired
 	private ICategoriaService categoriaService;
+
+	@Autowired
+	private IProductoService productoService;
 
 	@RequestMapping(value = "/listaClientes", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> getClientes() throws Exception {
@@ -91,5 +96,17 @@ public class AycAccesoriosController {
 		categoriaService.Eliminar(id_categoria);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+	
+	@RequestMapping(value = "/producto/listar", method = RequestMethod.GET)
+	public ResponseEntity<List<Producto>> getProductoss() throws Exception {
+		List<Producto> listaProducto = productoService.Listar();
+		return ResponseEntity.ok(listaProducto);
+	}
+	
+	@RequestMapping(value = "/producto/insertar", method = RequestMethod.POST)
+	public ResponseEntity<?> insertarProducto(@RequestBody Producto producto) throws ParseException {
+		System.out.print(producto.getId()+"  "+producto.getNombre());
+		productoService.Guardar(producto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
