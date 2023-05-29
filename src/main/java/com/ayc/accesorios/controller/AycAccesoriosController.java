@@ -116,4 +116,11 @@ public class AycAccesoriosController {
 		productoService.Eliminar(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+	
+	@RequestMapping(value="/producto/listar/{id}",method = RequestMethod.GET)
+	public ResponseEntity<?> listarProductoPorId(@PathVariable int id) throws Exception{
+						
+		String data = productoService.ConsultarId(id);
+		return new ResponseEntity<>(data,HttpStatus.OK);
+	}
 }

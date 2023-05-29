@@ -7,10 +7,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="producto")
+@NamedStoredProcedureQueries(value = {
+		@NamedStoredProcedureQuery(name = "f_listar_producto_por_id", procedureName = "f_listar_producto_por_id", parameters = {
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_id_producto", type = int.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_resultado", type = String.class),
+		}),
+})
 public class Producto {
     @Id //La linea siguiente es ID
     @GeneratedValue(strategy=GenerationType.IDENTITY) //Autoincremental
