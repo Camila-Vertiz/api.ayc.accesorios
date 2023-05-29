@@ -10,7 +10,7 @@ import com.ayc.accesorios.entity.Usuario;
 
 @Repository
 public interface IOrdenRepository extends CrudRepository<Orden, Integer>{
-    List<Orden> findByUsuario(Usuario usuario);
+//    List<Orden> findByUsuario(Usuario usuario);
     
     @Query(value="SELECT sum(total) FROM Orden "
             ,nativeQuery=true)

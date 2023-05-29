@@ -21,8 +21,8 @@ public class ProductoServiceImpl implements IProductoService{
     }
 
     @Override
-    public Optional<Producto> ConsultarId(int id) {
-        return data.findById(id);
+    public String ConsultarId(int id) {
+        return data.f_listar_producto_por_id(id);
     }
 
     @Override
@@ -34,34 +34,4 @@ public class ProductoServiceImpl implements IProductoService{
     public void Eliminar(int id) {
         data.deleteById(id);
     }
-
-    @Override
-    public List<Producto> Buscar(String dato) {
-        return data.buscarPorTodo(dato);
-    }
-
-    @Override
-    public List<Producto> OrdenAscendente() {
-        return data.OrderAsc();
-    }
-
-    @Override
-    public List<Producto> OrdenDescendente() {
-        return data.OrderDesc();
-    }
-
-    @Override
-    public List<Producto> ListarPorCategoria(String dato) {
-        return data.ListarPorCategoria(dato);
-    }
-
-	@Override
-	public List<Producto> BuscarCelulares(String dato) {
-		 return data.buscarCelulares(dato);
-	}
-
-	@Override
-	public List<Producto> BuscarCases(String dato) {
-		 return data.buscarCases(dato);
-	}
 }

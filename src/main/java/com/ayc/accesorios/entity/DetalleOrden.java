@@ -11,11 +11,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="DetalleOrden")
+@Table(name="detalle_orden")
 public class DetalleOrden {
     @Id //La linea siguiente es ID
     @GeneratedValue(strategy=GenerationType.IDENTITY) //Autoincremental
     private int id_detalle_orden;
+    private int id_producto;
+    private int id_orden;
     private String nombre;
     private int cantidad;
     private double precio;
@@ -24,45 +26,51 @@ public class DetalleOrden {
     public DetalleOrden() {
 		super();
 	}
-    
-	public DetalleOrden(String nombre, int cantidad, double precio, double total, Orden orden, Producto producto) {
-		super();
-		this.nombre = nombre;
-		this.cantidad = cantidad;
-		this.precio = precio;
-		this.total = total;
-		this.orden = orden;
-		this.producto = producto;
-	}
 
-	public DetalleOrden(int id_detalle_orden, String nombre, int cantidad, double precio, double total, Orden orden,
-			Producto producto) {
+	public DetalleOrden(int id_detalle_orden, int id_producto, int id_orden, String nombre, int cantidad, double precio,
+			double total) {
 		super();
 		this.id_detalle_orden = id_detalle_orden;
+		this.id_producto = id_producto;
+		this.id_orden = id_orden;
 		this.nombre = nombre;
 		this.cantidad = cantidad;
 		this.precio = precio;
 		this.total = total;
-		this.orden = orden;
-		this.producto = producto;
 	}
 
+	public DetalleOrden(int id_producto, int id_orden, String nombre, int cantidad, double precio, double total) {
+		super();
+		this.id_producto = id_producto;
+		this.id_orden = id_orden;
+		this.nombre = nombre;
+		this.cantidad = cantidad;
+		this.precio = precio;
+		this.total = total;
+	}
 
-
-	@ManyToOne
-    @JoinColumn(name="id_orden") //FK
-    private Orden orden;
-    
-    @ManyToOne
-    @JoinColumn(name="id_producto") //FK
-    private Producto producto;
-
-	public int getId() {
+	public int getId_detalle_orden() {
 		return id_detalle_orden;
 	}
 
-	public void setId(int id_detalle_orden) {
+	public void setId_detalle_orden(int id_detalle_orden) {
 		this.id_detalle_orden = id_detalle_orden;
+	}
+
+	public int getId_producto() {
+		return id_producto;
+	}
+
+	public void setId_producto(int id_producto) {
+		this.id_producto = id_producto;
+	}
+
+	public int getId_orden() {
+		return id_orden;
+	}
+
+	public void setId_orden(int id_orden) {
+		this.id_orden = id_orden;
 	}
 
 	public String getNombre() {
@@ -96,22 +104,5 @@ public class DetalleOrden {
 	public void setTotal(double total) {
 		this.total = total;
 	}
-
-	public Orden getOrden() {
-		return orden;
-	}
-
-	public void setOrden(Orden orden) {
-		this.orden = orden;
-	}
-
-	public Producto getProducto() {
-		return producto;
-	}
-
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
-    
     
 }
