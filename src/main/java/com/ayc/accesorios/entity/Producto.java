@@ -14,31 +14,21 @@ import javax.persistence.Table;
 public class Producto {
     @Id //La linea siguiente es ID
     @GeneratedValue(strategy=GenerationType.IDENTITY) //Autoincremental
-    private Integer id_producto;
+    private int id_producto;
     private String nombre;
     private String descripcion;
     private String imagen;
     private double precio;
     private int cantidad;
+    public int id_usuario;
+    public int id_categoria;
 
     public Producto() {
 		super();
 	}
 
-	public Producto(String nombre, String descripcion, String imagen, double precio, int cantidad, Usuario usuario,
-			Categoria categoria) {
-		super();
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.imagen = imagen;
-		this.precio = precio;
-		this.cantidad = cantidad;
-		this.usuario = usuario;
-		this.categoria = categoria;
-	}
-
-	public Producto(Integer id_producto, String nombre, String descripcion, String imagen, double precio, int cantidad,
-			Usuario usuario, Categoria categoria) {
+	public Producto(int id_producto, String nombre, String descripcion, String imagen, double precio, int cantidad,
+			int id_usuario, int id_categoria) {
 		super();
 		this.id_producto = id_producto;
 		this.nombre = nombre;
@@ -46,29 +36,35 @@ public class Producto {
 		this.imagen = imagen;
 		this.precio = precio;
 		this.cantidad = cantidad;
-		this.usuario = usuario;
-		this.categoria = categoria;
+		this.id_usuario = id_usuario;
+		this.id_categoria = id_categoria;
 	}
 
-	public String toString() {
-        return "Producto [id_producto="+id_producto+", nombre="+nombre+", descripcion="+descripcion+", imagen="+imagen
-                +", precio="+precio+", cantidad="+cantidad+", categoria="+categoria.getNombre()
-                +"]";
-    }
-    
-    @ManyToOne()
-    @JoinColumn(name="id_usuario") //FK
-    private Usuario usuario;
-    
-    @ManyToOne()
-    @JoinColumn(name="id_categoria") //FK
-    private Categoria categoria;
+	public Producto(String nombre, String descripcion, String imagen, double precio, int cantidad, int id_usuario,
+			int id_categoria) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.imagen = imagen;
+		this.precio = precio;
+		this.cantidad = cantidad;
+		this.id_usuario = id_usuario;
+		this.id_categoria = id_categoria;
+	}
 
-	public Integer getId() {
+	public int getId() {
 		return id_producto;
 	}
 
-	public void setId(Integer id_producto) {
+	public void setId(int id_producto) {
+		this.id_producto = id_producto;
+	}
+	
+	public int getId_producto() {
+		return id_producto;
+	}
+
+	public void setId_producto(int id_producto) {
 		this.id_producto = id_producto;
 	}
 
@@ -112,21 +108,21 @@ public class Producto {
 		this.cantidad = cantidad;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public int getId_usuario() {
+		return id_usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
+	public int getId_categoria() {
+		return id_categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setId_categoria(int id_categoria) {
+		this.id_categoria = id_categoria;
 	}
-    
-    
+
+	
 }
