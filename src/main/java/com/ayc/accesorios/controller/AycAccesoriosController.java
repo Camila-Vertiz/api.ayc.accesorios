@@ -196,10 +196,10 @@ public class AycAccesoriosController {
 //		return ResponseEntity.ok(listaDetalleOrden);
 //	}
 //	
-//	@RequestMapping(value = "/detalleOrden/insertar", method = RequestMethod.POST)
-//	public ResponseEntity<?> insertarDetalleOrden(@RequestBody DetalleOrden detalle) throws ParseException {
-//		System.out.println(detalle.getNombre());
-//		detalleService.Guardar(detalle);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+	@RequestMapping(value = "/detalleOrden/insertar", method = RequestMethod.POST)
+	public ResponseEntity<?> insertarDetalleOrden(@RequestBody DetalleOrden detalleOrden) throws ParseException {
+		System.out.println(detalleOrden.getNombre());
+		detalleService.Guardar(detalleOrden);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
