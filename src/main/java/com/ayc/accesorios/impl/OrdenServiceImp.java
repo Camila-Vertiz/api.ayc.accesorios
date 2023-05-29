@@ -56,10 +56,10 @@ public class OrdenServiceImp implements IOrdenService {
         return numeroConcatenado;
     }
 
-    @Override
-    public List<Orden> findByUsuario(Usuario usuario) {
-        return ordenRepository.findByUsuario(usuario);
-    }
+//    @Override
+//    public List<Orden> findByUsuario(Usuario usuario) {
+//        return ordenRepository.findByUsuario(usuario);
+//    }
 
     @Override
     public Optional<Orden> findById(Integer id) {

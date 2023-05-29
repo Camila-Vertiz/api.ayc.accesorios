@@ -12,28 +12,51 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Orden")
+@Table(name="orden")
 public class Orden {
     @Id //La linea siguiente es ID
     @GeneratedValue(strategy=GenerationType.IDENTITY) //Autoincremental
     private int id_orden;
+    private int id_usuario;
     private String numero;
     private Date fechaCreacion;
     private double total;
     
-    @ManyToOne
-    @JoinColumn(name="id_usuario") //FK
-    private Usuario usuario;
-    
-    @OneToMany(mappedBy="orden")
-    private List<DetalleOrden> detalle;
+	public Orden() {
+		super();
+	}
 
-	public int getId() {
+	public Orden(int id_usuario, String numero, Date fechaCreacion, double total) {
+		super();
+		this.id_usuario = id_usuario;
+		this.numero = numero;
+		this.fechaCreacion = fechaCreacion;
+		this.total = total;
+	}
+
+	public Orden(int id_orden, int id_usuario, String numero, Date fechaCreacion, double total) {
+		super();
+		this.id_orden = id_orden;
+		this.id_usuario = id_usuario;
+		this.numero = numero;
+		this.fechaCreacion = fechaCreacion;
+		this.total = total;
+	}
+
+	public int getId_orden() {
 		return id_orden;
 	}
 
-	public void setId(int id_orden) {
+	public void setId_orden(int id_orden) {
 		this.id_orden = id_orden;
+	}
+
+	public int getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 
 	public String getNumero() {
@@ -60,21 +83,4 @@ public class Orden {
 		this.total = total;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public List<DetalleOrden> getDetalle() {
-		return detalle;
-	}
-
-	public void setDetalle(List<DetalleOrden> detalle) {
-		this.detalle = detalle;
-	}
-    
-    
 }

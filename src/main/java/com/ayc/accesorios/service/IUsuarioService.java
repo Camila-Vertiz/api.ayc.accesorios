@@ -14,5 +14,6 @@ public interface IUsuarioService {
     public void Eliminar (int id);
     public List<Usuario> Buscar(String dato);
     public String verificarUsuario(Usuario usuario);
+    public String verificarUsuarioExistente(Usuario usuario);
     public List<Usuario> ListarTipo(String dato);
 }

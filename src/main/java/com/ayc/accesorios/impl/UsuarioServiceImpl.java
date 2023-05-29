@@ -54,4 +54,9 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	public List<Usuario> ListarClientes(String tipo) {
 		return usuarioRepository.listaClientes(tipo);
 	}
+
+	@Override
+	public String verificarUsuarioExistente(Usuario usuario) {
+		return usuarioRepository.f_verificar_usuario_existente(usuario.getEmail());
+	}
 }
