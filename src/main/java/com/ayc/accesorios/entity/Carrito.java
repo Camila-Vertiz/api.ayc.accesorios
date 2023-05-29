@@ -7,54 +7,65 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="detalle_orden")
-public class DetalleOrden {
+@Table(name="carrito")
+@NamedStoredProcedureQueries(value = {
+		@NamedStoredProcedureQuery(name = "f_verificar_producto_existente_carrito", procedureName = "f_verificar_producto_existente_carrito", parameters = {
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_id_producto", type = int.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "in_id_usuario", type = int.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_resultado", type = String.class),
+		}),
+})
+public class Carrito {
     @Id //La linea siguiente es ID
     @GeneratedValue(strategy=GenerationType.IDENTITY) //Autoincremental
-    private int id_detalle_orden;
+    private int id_carrito;
     private int id_producto;
-    private int id_orden;
+    private int id_usuario;
     private String nombre;
     private int cantidad;
     private double precio;
     private double total;
     
-    public DetalleOrden() {
+    public Carrito() {
 		super();
 	}
 
-	public DetalleOrden(int id_detalle_orden, int id_producto, int id_orden, String nombre, int cantidad, double precio,
+	public Carrito(int id_carrito, int id_producto, int id_usuario, String nombre, int cantidad, double precio,
 			double total) {
 		super();
-		this.id_detalle_orden = id_detalle_orden;
+		this.id_carrito = id_carrito;
 		this.id_producto = id_producto;
-		this.id_orden = id_orden;
+		this.id_usuario = id_usuario;
 		this.nombre = nombre;
 		this.cantidad = cantidad;
 		this.precio = precio;
 		this.total = total;
 	}
 
-	public DetalleOrden(int id_producto, int id_orden, String nombre, int cantidad, double precio, double total) {
+	public Carrito(int id_producto, int id_usuario, String nombre, int cantidad, double precio, double total) {
 		super();
 		this.id_producto = id_producto;
-		this.id_orden = id_orden;
+		this.id_usuario = id_usuario;
 		this.nombre = nombre;
 		this.cantidad = cantidad;
 		this.precio = precio;
 		this.total = total;
 	}
 
-	public int getId_detalle_orden() {
-		return id_detalle_orden;
+	public int getId_carrito() {
+		return id_carrito;
 	}
 
-	public void setId_detalle_orden(int id_detalle_orden) {
-		this.id_detalle_orden = id_detalle_orden;
+	public void setId_carrito(int id_carrito) {
+		this.id_carrito = id_carrito;
 	}
 
 	public int getId_producto() {
@@ -65,12 +76,12 @@ public class DetalleOrden {
 		this.id_producto = id_producto;
 	}
 
-	public int getId_orden() {
-		return id_orden;
+	public int getId_usuario() {
+		return id_usuario;
 	}
 
-	public void setId_orden(int id_orden) {
-		this.id_orden = id_orden;
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 
 	public String getNombre() {
@@ -104,5 +115,5 @@ public class DetalleOrden {
 	public void setTotal(double total) {
 		this.total = total;
 	}
-    
+
 }

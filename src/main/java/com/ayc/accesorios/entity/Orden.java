@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Orden")
+@Table(name="orden")
 public class Orden {
     @Id //La linea siguiente es ID
     @GeneratedValue(strategy=GenerationType.IDENTITY) //Autoincremental
@@ -21,12 +21,12 @@ public class Orden {
     private Date fechaCreacion;
     private double total;
     
-    @ManyToOne
-    @JoinColumn(name="id_usuario") //FK
-    private Usuario usuario;
-    
-    @OneToMany(mappedBy="orden")
-    private List<DetalleOrden> detalle;
+//    @ManyToOne
+//    @JoinColumn(name="id_usuario") //FK
+//    private Usuario usuario;
+//    
+//    @OneToMany(mappedBy="orden")
+//    private List<DetalleOrden> detalle;
 
 	public int getId() {
 		return id_orden;
@@ -60,21 +60,21 @@ public class Orden {
 		this.total = total;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public List<DetalleOrden> getDetalle() {
-		return detalle;
-	}
-
-	public void setDetalle(List<DetalleOrden> detalle) {
-		this.detalle = detalle;
-	}
+//	public Usuario getUsuario() {
+//		return usuario;
+//	}
+//
+//	public void setUsuario(Usuario usuario) {
+//		this.usuario = usuario;
+//	}
+//
+//	public List<DetalleOrden> getDetalle() {
+//		return detalle;
+//	}
+//
+//	public void setDetalle(List<DetalleOrden> detalle) {
+//		this.detalle = detalle;
+//	}
     
     
 }

@@ -1,5 +1,7 @@
 package com.ayc.accesorios.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,10 @@ public class DetalleOrdenServiceImp implements IDetalleOrdenService{
     public void Guardar(DetalleOrden dt) {
         detalleOrdenRepository.save(dt);
     }
+
+	@Override
+	public List<DetalleOrden> Listar() {
+		return (List<DetalleOrden>) detalleOrdenRepository.findAll();
+	}
     
 }
