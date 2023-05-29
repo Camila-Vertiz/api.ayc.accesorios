@@ -160,6 +160,12 @@ public class AycAccesoriosController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 	
+	@RequestMapping(value = "/carrito/eliminar", method = RequestMethod.POST)
+	public ResponseEntity<?> eliminarCarrito(@RequestBody Carrito carrito) throws ParseException {
+		carritoService.Guardar(carrito);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+	
 	
 //	
 //	@RequestMapping(value = "/detalleOrden/listar", method = RequestMethod.GET)
