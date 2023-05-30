@@ -189,13 +189,13 @@ public class AycAccesoriosController {
 		String data = ordenService.ConsultarIdUsuario(id_usuario);
 		return new ResponseEntity<>(data,HttpStatus.OK);
 	}
-//	
-//	@RequestMapping(value = "/detalleOrden/listar", method = RequestMethod.GET)
-//	public ResponseEntity<List<DetalleOrden>> getDetalleOrden() throws Exception {
-//		List<DetalleOrden> listaDetalleOrden = detalleService.Listar();
-//		return ResponseEntity.ok(listaDetalleOrden);
-//	}
-//	
+	
+	@RequestMapping(value = "/detalleOrden/listar/{id_orden}", method = RequestMethod.GET)
+	public ResponseEntity<?> getDetalleOrdenPorIdOrden(@PathVariable int id_orden) throws Exception {
+		String data = detalleService.ConsultarIdOrden(id_orden);
+		return new ResponseEntity<>(data,HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/detalleOrden/insertar", method = RequestMethod.POST)
 	public ResponseEntity<?> insertarDetalleOrden(@RequestBody DetalleOrden detalleOrden) throws ParseException {
 		System.out.println(detalleOrden.getNombre());
