@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ayc.accesorios.entity.Carrito;
 import com.ayc.accesorios.entity.Categoria;
 import com.ayc.accesorios.entity.DetalleOrden;
+import com.ayc.accesorios.entity.Orden;
 import com.ayc.accesorios.entity.Producto;
 import com.ayc.accesorios.entity.Usuario;
 import com.ayc.accesorios.service.ICarritoService;
 import com.ayc.accesorios.service.ICategoriaService;
 import com.ayc.accesorios.service.IDetalleOrdenService;
+import com.ayc.accesorios.service.IOrdenService;
 import com.ayc.accesorios.service.IProductoService;
 import com.ayc.accesorios.service.IUsuarioService;
 
@@ -41,6 +43,9 @@ public class AycAccesoriosController {
 	
 	@Autowired
 	private ICarritoService carritoService;
+	
+	@Autowired
+	private IOrdenService ordenService;
 	
 	@Autowired
 	private IDetalleOrdenService detalleService;
@@ -166,18 +171,35 @@ public class AycAccesoriosController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 	
+	@RequestMapping(value = "/orden/listar", method = RequestMethod.GET)
+	public ResponseEntity<List<Orden>> listarOrden() throws Exception {
+		List<Orden> listaOrden = ordenService.FindAll();
+		return ResponseEntity.ok(listaOrden);
+	}
 	
-//	
-//	@RequestMapping(value = "/detalleOrden/listar", method = RequestMethod.GET)
-//	public ResponseEntity<List<DetalleOrden>> getDetalleOrden() throws Exception {
-//		List<DetalleOrden> listaDetalleOrden = detalleService.Listar();
-//		return ResponseEntity.ok(listaDetalleOrden);
-//	}
-//	
-//	@RequestMapping(value = "/detalleOrden/insertar", method = RequestMethod.POST)
-//	public ResponseEntity<?> insertarDetalleOrden(@RequestBody DetalleOrden detalle) throws ParseException {
-//		System.out.println(detalle.getNombre());
-//		detalleService.Guardar(detalle);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+	@RequestMapping(value = "/orden/insertar", method = RequestMethod.POST)
+	public ResponseEntity<?> insertarOrden(@RequestBody Orden orden) throws ParseException {
+		ordenService.Guardar(orden);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+	
+	@RequestMapping(value="/orden/listar/{id_usuario}",method = RequestMethod.GET)
+	public ResponseEntity<?> listarOrdenesPorUsuario(@PathVariable int id_usuario) throws Exception{
+						
+		String data = ordenService.ConsultarIdUsuario(id_usuario);
+		return new ResponseEntity<>(data,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/detalleOrden/listar/{id_orden}", method = RequestMethod.GET)
+	public ResponseEntity<?> getDetalleOrdenPorIdOrden(@PathVariable int id_orden) throws Exception {
+		String data = detalleService.ConsultarIdOrden(id_orden);
+		return new ResponseEntity<>(data,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/detalleOrden/insertar", method = RequestMethod.POST)
+	public ResponseEntity<?> insertarDetalleOrden(@RequestBody DetalleOrden detalleOrden) throws ParseException {
+		System.out.println(detalleOrden.getNombre());
+		detalleService.Guardar(detalleOrden);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
