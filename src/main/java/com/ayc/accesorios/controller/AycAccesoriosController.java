@@ -18,12 +18,14 @@ import com.ayc.accesorios.entity.Categoria;
 import com.ayc.accesorios.entity.DetalleOrden;
 import com.ayc.accesorios.entity.Orden;
 import com.ayc.accesorios.entity.Producto;
+import com.ayc.accesorios.entity.Suscripcion;
 import com.ayc.accesorios.entity.Usuario;
 import com.ayc.accesorios.service.ICarritoService;
 import com.ayc.accesorios.service.ICategoriaService;
 import com.ayc.accesorios.service.IDetalleOrdenService;
 import com.ayc.accesorios.service.IOrdenService;
 import com.ayc.accesorios.service.IProductoService;
+import com.ayc.accesorios.service.ISuscripcionService;
 import com.ayc.accesorios.service.IUsuarioService;
 
 @RestController
@@ -49,6 +51,9 @@ public class AycAccesoriosController {
 	
 	@Autowired
 	private IDetalleOrdenService detalleService;
+	
+	@Autowired
+	private ISuscripcionService suscripcionService;
 
 	@RequestMapping(value = "/listaClientes", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> getClientes() throws Exception {
@@ -200,6 +205,12 @@ public class AycAccesoriosController {
 	public ResponseEntity<?> insertarDetalleOrden(@RequestBody DetalleOrden detalleOrden) throws ParseException {
 		System.out.println(detalleOrden.getNombre());
 		detalleService.Guardar(detalleOrden);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/suscripcion/insertar", method = RequestMethod.POST)
+	public ResponseEntity<?> insertarSuscripcion(@RequestBody Suscripcion suscripcion) throws ParseException {
+		suscripcionService.Guardar(suscripcion);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
