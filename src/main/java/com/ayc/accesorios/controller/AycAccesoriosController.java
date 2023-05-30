@@ -195,6 +195,13 @@ public class AycAccesoriosController {
 		return new ResponseEntity<>(data,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/orden/ventas/{id_usuario}",method = RequestMethod.GET)
+	public ResponseEntity<?> listarCantVentasPorUsuario(@PathVariable int id_usuario) throws Exception{
+						
+		int data = ordenService.VentasPorCliente(id_usuario);
+		return new ResponseEntity<>(data,HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/detalleOrden/listar/{id_orden}", method = RequestMethod.GET)
 	public ResponseEntity<?> getDetalleOrdenPorIdOrden(@PathVariable int id_orden) throws Exception {
 		String data = detalleService.ConsultarIdOrden(id_orden);
