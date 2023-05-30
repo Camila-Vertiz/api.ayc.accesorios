@@ -19,4 +19,6 @@ public interface IOrdenService {
     public List<Orden> OrderDesc(); 
     public int VentasPorProducto(Integer id);
     public int VentasPorCliente(Integer id);
+    
+    public String ConsultarIdUsuario(int id_usuario);
 }

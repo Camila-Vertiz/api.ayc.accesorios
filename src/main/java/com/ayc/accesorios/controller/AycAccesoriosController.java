@@ -183,12 +183,12 @@ public class AycAccesoriosController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 	
-//	@RequestMapping(value="/orden/listar/{id_usuario}",method = RequestMethod.GET)
-//	public ResponseEntity<?> listarOrdenesPorUsuario(@PathVariable int id_usuario) throws Exception{
-//						
-//		List<Orden> data = ordenService.findById(id_usuario);
-//		return new ResponseEntity<>(data,HttpStatus.OK);
-//	}
+	@RequestMapping(value="/orden/listar/{id_usuario}",method = RequestMethod.GET)
+	public ResponseEntity<?> listarOrdenesPorUsuario(@PathVariable int id_usuario) throws Exception{
+						
+		String data = ordenService.ConsultarIdUsuario(id_usuario);
+		return new ResponseEntity<>(data,HttpStatus.OK);
+	}
 //	
 //	@RequestMapping(value = "/detalleOrden/listar", method = RequestMethod.GET)
 //	public ResponseEntity<List<DetalleOrden>> getDetalleOrden() throws Exception {

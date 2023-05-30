@@ -100,4 +100,10 @@ public class OrdenServiceImp implements IOrdenService {
     public int VentasPorCliente(Integer id) {
         return ordenRepository.VentasPorCliente(id);
     }
+
+	@Override
+	public String ConsultarIdUsuario(int id_usuario) {
+		// TODO Auto-generated method stub
+		return ordenRepository.f_listar_orden_por_cliente(id_usuario);
+	}
 }
