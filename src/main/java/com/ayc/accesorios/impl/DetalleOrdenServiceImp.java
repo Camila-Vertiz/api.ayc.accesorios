@@ -24,5 +24,10 @@ public class DetalleOrdenServiceImp implements IDetalleOrdenService{
 	public List<DetalleOrden> Listar() {
 		return (List<DetalleOrden>) detalleOrdenRepository.findAll();
 	}
+
+	@Override
+	public String ConsultarIdOrden(int id_orden) {
+		return detalleOrdenRepository.f_listar_detalle_por_orden(id_orden);
+	}
     
 }

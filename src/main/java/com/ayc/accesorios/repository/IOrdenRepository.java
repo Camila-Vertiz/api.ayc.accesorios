@@ -2,7 +2,9 @@ package com.ayc.accesorios.repository;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.ayc.accesorios.entity.Orden;
@@ -43,4 +45,7 @@ public interface IOrdenRepository extends CrudRepository<Orden, Integer>{
             + "INNER JOIN usuario ON orden.id_usuario=usuario.id_usuario "
             + "WHERE orden.id_usuario= ?1 ",nativeQuery=true)
     int VentasPorCliente(Integer id);
+    
+    @Procedure(name = "f_listar_orden_por_cliente")
+	public String f_listar_orden_por_cliente(@Param("in_id_usuario") int id_usuario);
 }
